@@ -9,10 +9,11 @@ require_once ('jpgraph-4.0.1/src/jpgraph_line.php');
 define('BOT_TOKEN', '<your_bot_token>');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
-// read incoming info and grab the chatID
+// read incoming info, grab the chatID and message content
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
 $chatID = $update["message"]["chat"]["id"];
+$message = $update["message"]["text"];
 
 switch($message){
 	case "/<your_command>@<your_bot>": sendGraph($chatID);
